@@ -1,0 +1,250 @@
+{
+  "sections": {
+    "hero-video": {
+      "type": "hero-video",
+      "settings": {
+        "title": "We’re here to help you feel\nbalanced",
+        "title_size": 44,
+        "subheading": "Astreas Energy is like taking legal and clean steroids",
+        "link_text": "Start Today",
+        "link": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+        "text_align": "vertical-center horizontal-left",
+        "video_url": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/f40f26e869b64ea9af21f99cd725f8c5.mp4",
+        "overlay_opacity": 10,
+        "section_height": "650px",
+        "mobile_height": "auto"
+      }
+    },
+    "featured-collection-switcher": {
+      "type": "featured-collection-switcher",
+      "settings": {
+        "title": "Most popular",
+        "collection1": "",
+        "collection2": "",
+        "per_row": 4,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "rich-text": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "Rich text"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": true,
+            "text": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "divider": false
+      }
+    },
+    "featured-collections": {
+      "type": "featured-collections",
+      "blocks": {
+        "1499789718857-0": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "focal_point": "center center",
+            "size": "wide"
+          }
+        },
+        "1499789718857-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "focal_point": "center center",
+            "size": "square-small"
+          }
+        },
+        "1499789718857-2": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "focal_point": "center center",
+            "size": "square-small"
+          }
+        },
+        "1499789718857-3": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "focal_point": "center center",
+            "size": "square-small"
+          }
+        },
+        "1499789718857-4": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "focal_point": "center center",
+            "size": "square-small"
+          }
+        },
+        "1499789718857-5": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "focal_point": "center center",
+            "size": "wide"
+          }
+        }
+      },
+      "block_order": [
+        "1499789718857-0",
+        "1499789718857-1",
+        "1499789718857-2",
+        "1499789718857-3",
+        "1499789718857-4",
+        "1499789718857-5"
+      ],
+      "settings": {
+        "title": "",
+        "divider": false,
+        "enable_gutter": false
+      }
+    },
+    "fading-images": {
+      "type": "fading-images",
+      "blocks": {
+        "1498501481980-0": {
+          "type": "image",
+          "settings": {
+            "slide_title1": "Beautifully animated",
+            "slide_title2": "titles and images"
+          }
+        },
+        "1498501481980-1": {
+          "type": "image",
+          "settings": {
+            "slide_title1": "Use this section",
+            "slide_title2": "to impress"
+          }
+        },
+        "1498501481980-2": {
+          "type": "image",
+          "settings": {
+            "slide_title1": "And highlight",
+            "slide_title2": "important details"
+          }
+        }
+      },
+      "block_order": [
+        "1498501481980-0",
+        "1498501481980-1",
+        "1498501481980-2"
+      ],
+      "settings": {
+        "title_lines": "2",
+        "title_font": "body",
+        "title_size": 45,
+        "title_color": "#ffffff",
+        "title_bg_color": "rgba(0,0,0,0)",
+        "text_align": "vertical-center horizontal-center",
+        "link": "",
+        "slide_speed": 5,
+        "color_overlay": "#000000",
+        "color_overlay_opacity": 30,
+        "desktop_height": "650px",
+        "mobile_height": "auto",
+        "lazyload_images": true
+      }
+    },
+    "collection-callout": {
+      "type": "collection-callout",
+      "settings": {
+        "collection": "",
+        "subtitle": "Brand new",
+        "title": "Collection callout",
+        "text": "Use this section to easily call attention to one of your collections. We'll show photos of the first 5 products.",
+        "cta_text1": "Shop Jackets",
+        "cta_link1": "",
+        "cta_text2": "Shop All",
+        "cta_link2": "",
+        "layout": "right",
+        "divider": false
+      }
+    },
+    "background-image-text": {
+      "type": "background-image-text",
+      "settings": {
+        "subtitle": "Impressive",
+        "title": "Large image and text",
+        "text": "<p>Pair large text with a full-width image to draw attention to an important detail of your brand or product line.<\/p>",
+        "button_label": "",
+        "button_link": "",
+        "layout": "left",
+        "height": 650,
+        "parallax": true,
+        "parallax_direction": "top",
+        "lazyload_images": true
+      }
+    },
+    "video_testimonial_4j6Han": {
+      "type": "video-testimonial",
+      "blocks": {
+        "testimonial_8nwVnX": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Example title",
+            "text": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products.<\/p>"
+          }
+        },
+        "testimonial_cCfm3Q": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Example title",
+            "text": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products.<\/p>"
+          }
+        },
+        "testimonial_yLY3zm": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Example title",
+            "text": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_8nwVnX",
+        "testimonial_cCfm3Q",
+        "testimonial_yLY3zm"
+      ],
+      "settings": {
+        "title": "See what people are saying",
+        "align_text": "left",
+        "flex_direction": "column",
+        "desktop_columns_per_row": 3,
+        "icon_color": "#000",
+        "button_label": "",
+        "button_link": "",
+        "divider": false
+      }
+    }
+  },
+  "order": [
+    "hero-video",
+    "featured-collection-switcher",
+    "rich-text",
+    "featured-collections",
+    "fading-images",
+    "collection-callout",
+    "background-image-text",
+    "video_testimonial_4j6Han"
+  ]
+}
