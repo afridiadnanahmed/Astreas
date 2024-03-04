@@ -18,21 +18,42 @@
     <div
       class="
         video-testimonial__blocks
-        has-{{ section.settings.desktop_columns_per_row }}-per-row"
       data-block-count="{{ section.blocks.size }}"
       >
       {% for block in section.blocks %}
         <div class="video-testimonial__block text-{{ section.settings.align_text }}" {{ block.shopify_attributes }}>
-          <div class="video-testimonial__block-icon">
-            
+          <div class="video-testimonial__block-video">
+            <div class="video-testimonial__block-img-container" style="width: 250px; height: 444px; background-image:url('{{ block.settings.image | image_url : width : 250 , crop : 'center' }}')">
+              {% if block.settings.image == blank %}
+                <img src="https://dummyimage.com/250x444/ccc/fff.gif" alt="Snow">
+              {% endif %}
+              <svg viewBox="0 0 96 96" fill="none" class="video-btn" focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M39.4065 37.4293C39.4065 35.3178 41.6922 33.9982 43.5208 35.0539L62.8634 46.2214C64.692 47.2771 64.692 49.9164 62.8634 50.9721L43.5208 62.1396C41.6922 63.1953 39.4065 61.8757 39.4065 59.7642L39.4065 37.4293Z" fill="currentColor"></path></svg>
+            </div>
           </div>
-          <div class="video-testimonial__block-title">
-            <h3>{{ block.settings.title }}</h3>
+
+          <small class="video-testimonial__block-caption">{{ block.settings.caption }}</small>
+          <div class="video-testimonial__block-title h4">
+            {{ block.settings.title }}
           </div>
           <div class="video-testimonial__block-text">
             {{ block.settings.text }}
           </div>
         </div>
+          <div id="{{ block.id }}-video" class="video-modal">
+            <div class="modal-content">
+              <svg class="close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" stroke="black" stroke-width="2" fill="none"/>
+                <line x1="8" y1="8" x2="16" y2="16" stroke="black" stroke-width="2"/>
+                <line x1="8" y1="16" x2="16" y2="8" stroke="black" stroke-width="2"/>
+              </svg>
+              {% if block.settings.video.type == 'youtube' %}
+                <iframe src="https://www.youtube.com/embed/{{ block.settings.video.id }}?rel=0&showinfo=0&vq=720" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+              {% endif %}
+              {% if block.settings.video.type == 'vimeo' %}
+                <iframe src="https://player.vimeo.com/video/{{ block.settings.video.id }}?color={{ settings.color_button | remove: "#" }}&byline=0&portrait=0&badge=0" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+              {% endif %}
+            </div>
+          </div>
       {% endfor %}
     </div>
 
@@ -46,17 +67,167 @@
   </div>
 </div>
 
+
 {%- if section.settings.divider -%}</div>{%- endif -%}
 
 {% style %}
-  #shopify-section-{{ section.id }} .icon {
-    color: {{ section.settings.icon_color }};
+  /* The Modal (background) */
+  .video-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
 
-  #shopify-section-{{ section.id }} .video-tesimonial__blocks .video-tesimonial__block{
-    flex-direction: {{ section.settings.flex_direction }}
+  /* Modal Content */
+  .modal-content {
+    text-align: center;
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    color: var(--colorTextBody);;
+  }
+
+  /* Add Animation */
+  @-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+  }
+
+  @keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+  }
+
+  /* The Close Button */
+  .close {
+    color: #000;
+    position: absolute;
+    right: -10px;
+    top: -25px;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .close:hover circle {
+    stroke: red; /* Change the stroke color on hover if desired */
+  }
+
+  .modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+  }
+
+  .modal-body {padding: 2px 16px;}
+
+  .modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+  }
+
+  @scope(#shopify-section-{{ section.id }}) {
+
+    .video-testimonial__blocks{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      flex-direction: {{ section.settings.flex_direction }}
+    }
+
+    .video-testimonial__blocks .video-testimonial__block{
+      max-width: 250px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+    }
+
+    .video-testimonial__block-img-container {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .video-testimonial__block-img-container img {
+      width: 100%;
+      height: auto;
+    }
+
+    .video-testimonial__block-img-container .video-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 2px solid #fff;
+      color: #fff;
+      width: 80px;
+    }
+
+    .video-testimonial__block-title.h4{
+      margin-bottom: 10px;
+    }
+
+    .video-testimonial__block-img-container .video-testimonial__block-caption {
+      margin-bottom: 20px;
+    }
+
+    .video-testimonial__block-text {
+      text-transform: uppercase;
+    }
+
+    .video-testimonial__block-img-container:hover .video-btn {
+      background-color: #63d1d9;
+    }
+    .video-testimonial__button{
+      margin-top: 40px;
+    }
   }
 {% endstyle %}
+
+<script>
+  (function(){
+    const videos = document.querySelectorAll('.video-testimonial__block');
+    videos.forEach(video => {
+      video.addEventListener('click', function(){
+        window.current_modal = this.nextSibling.nextSibling
+        const modal_id = window.current_modal.getAttribute('id');
+        window.current_modal.style.display = "block"
+
+        window.current_modal.querySelector('.close').addEventListener('click', function(){
+          document.getElementById(modal_id).style.display = "none"
+        })
+      })
+    })
+    window.onclick = function(event) {
+      if (event.target == window.current_modal) {
+        window.current_modal.style.display = "none";
+      }
+    }
+  })()
+</script>
 
 {% schema %}
 {
@@ -87,7 +258,7 @@
     {
       "type": "select",
       "id": "flex_direction",
-      "label": "Text with icon direction",
+      "label": "Content direction",
       "default": "row",
       "options": [
         {
@@ -99,15 +270,6 @@
           "label": "Column"
         }
       ]
-    },
-    {
-      "type": "range",
-      "id": "desktop_columns_per_row",
-      "label": "t:common.text_with_icons.settings.desktop_columns_per_row.label",
-      "default": 3,
-      "min": 2,
-      "max": 4,
-      "step": 1
     },
     {
       "type": "color",
@@ -138,16 +300,32 @@
       "name": "t:common.text_with_icons.blocks.column.name",
       "settings": [
         {
-          "type": "text",
-          "id": "title",
-          "label": "t:common.text_with_icons.blocks.column.settings.title.label",
-          "default": "Example title"
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
         },
         {
-          "type": "richtext",
+          "type": "video_url",
+          "id": "video",
+          "label": "Video",
+          "accept": ["youtube", "vimeo"]
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption",
+          "default": "Lorem Ipsum"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
           "id": "text",
-          "label": "t:common.text_with_icons.blocks.column.settings.text.label",
-          "default": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products.</p>"
+          "label": "Sub Title",
+          "default": "Lorem Ipsum., 01/01/24"
         }
       ]
     }
