@@ -1,7 +1,6 @@
 {%- if section.settings.divider -%}<div class="section--divider">{%- endif -%}
 
 {%- liquid
-  assign image_width = section.settings.image_width
   assign overlap_images = false
 
   if section.settings.image == blank
@@ -10,73 +9,108 @@
 -%}
 
 {% style %}
-  {% if section.settings.top_padding == false %}
-    #shopify-section-{{ section.id }} .index-section { margin-top: 0 !important; }
-  {% endif %}
-  {% if section.settings.bottom_padding == false %}
-    #shopify-section-{{ section.id }} .index-section { margin-bottom: 0 !important; }
-  {% endif %}
+  @scope(#shopify-section-{{ section.id }}){
+    {% if section.settings.top_padding == false %}
+      .index-section { margin-top: 0 !important; }
+    {% endif %}
+    {% if section.settings.bottom_padding == false %}
+      .index-section { margin-bottom: 0 !important; }
+    {% endif %}
 
-    #shopify-section-{{ section.id }} .background-media-text__text {
+    .background-media-text__text {
       background: transparent;
       color: {{ section.settings.ingredients_color }};
       width: 240px;
     }
 
-  @media only screen and (max-width:589px){
-    #shopify-section-{{ section.id }} .background-media-text__text {
-      font-size:15px;
+    .background-media-text__innerr {
+      background-color: {{ section.settings.ingredients_bg_color }};
     }
-    #shopify-section-{{ section.id }} .rte p{
-      margin-bottom: 20px;
+    .background-media-text__innerr .background-media-text__text{
+      color: {{ section.settings.ingredients_color }} !important;
+    }
+
+    @media only screen and (max-width:589px){
+      .background-media-text__text {
+        font-size:15px;
+      }
+      .rte p{
+        margin-bottom: 20px;
+      }
+    }
+
+    {% case section.settings.vertical_align_text %}
+      {% when 'center' %}
+      {% assign vertical_align_text = 'center' %}
+      {% when 'bottom' %}
+        {% assign vertical_align_text = 'flex-end' %}
+      {% else %}
+        {% assign vertical_align_text = 'flex-start' %}
+    {% endcase %}
+
+    .feature-row__images {
+      background-color: {{ section.settings.ingredients_bg_color }};
+    }
+
+    .feature-row{
+      align-items: {{ vertical_align_text }};
+    }
+    .flex-item-35 {
+      flex: 0 1 35%;
+    }
+    .flex-item-40 {
+      flex: 0 1 40%;
+    }
+    .flex-item-60 {
+      flex: 0 1 60%;
+    }
+    .flex-item-65 {
+      flex: 0 1 65%;
+    }
+    .image-ingredients-wrapper {
+      display: flex;
     }
   }
 {% endstyle %}
 
-<div class="index-section">
-
-  <div class="page-width feature-row-wrapper feature-row--{{ image_width }}">
-    {%- capture ingredients_layout -%}
-      {%- if section.settings.ingredients_title != blank or section.settings.ingredients != blank -%}
-        <div class="background-media-text__inner">
-          <div class="background-media-text__aligner background-media-text--{{ section.settings.layout }}">
-            <div class="animation-cropper">
-              <div class="animation-contents">
-                <div class="background-media-text__text larger-text">
-                  {%- if section.settings.ingredients_title != blank -%}
-                    <h2 class="h3">{{ section.settings.ingredients_title | escape }}</h2>
-                  {%- endif -%}
-                  {%- if section.settings.ingredients != blank -%}
-                    <div class="rte background-media-text__subtext">{{ section.settings.ingredients }}</div>
-                  {%- endif -%}
-                </div>
-              </div>
+{%- capture ingredients_layout -%}
+  {%- if section.settings.ingredients_title != blank or section.settings.ingredients != blank -%}
+    <div class="flex-item-60 background-media-text__innerr">
+      <div class="background-media-text--{{ section.settings.layout }}">
+        <div class="">
+          <div class="animation-contents">
+            <div class="background-media-text__text larger-text">
+              {%- if section.settings.ingredients_title != blank -%}
+                <h2 class="h3">{{ section.settings.ingredients_title | escape }}</h2>
+              {%- endif -%}
+              {%- if section.settings.ingredients != blank -%}
+                <div class="rte background-media-text__subtext">{{ section.settings.ingredients }}</div>
+              {%- endif -%}
             </div>
           </div>
         </div>
-      {%- endif -%}
-    {%- endcapture -%}
+      </div>
+    </div>
+  {%- endif -%}
+{%- endcapture -%}
 
+<div class="index-section">
+
+  <div class="page-width feature-row-wrapper">
     {%- capture image_layout -%}
-      <div class="feature-row__item feature-row__images{% if overlap_images %} feature-row__item--overlap-images{% endif %} {% if placeholder_images %}feature-row__item--placeholder-images{% endif %}" data-aos>
+      <div class="flex-item-40 feature-row__images{% if overlap_images %} feature-row__item--overlap-images{% endif %} {% if placeholder_images %}feature-row__item--placeholder-images{% endif %}" data-aos>
           {%- if section.settings.image != blank -%}
             <div class="feature-row__first-image">
               <div class="image-wrap {% if section.settings.image_mask != 'none' %}svg-mask svg-mask--{{ section.settings.image_mask }}{% endif %}" style="height: 0; padding-bottom: {{ 100 | divided_by: section.settings.image.aspect_ratio }}%;">
                 {%- liquid
                   if section.settings.image != blank
-                    assign sizeVariable = section.settings.image_width | append: 'vw'
                     assign fallback = '100vw'
                   else
                     assign sizeVariable = 'calc(0.4 * 50vw)'
                     assign fallback = '40vw'
                   endif
 
-                  assign imageWidth = section.settings.image_width | times: 1
-                  if imageWidth >= 50
-                    assign loading = section.settings.lazyload_images
-                  else
-                    assign loading = true
-                  endif
+                  assign loading = true
                 -%}
                 {%- render 'image-element',
                   img: section.settings.image,
@@ -86,7 +120,6 @@
                   fallback: fallback,
                   classes: 'feature-row__image',
                 -%}
-                {{ ingredients_layout }}
               </div>
             </div>
           {%- endif -%}
@@ -108,10 +141,13 @@
 
     <div class="feature-row">
       {%- if section.settings.layout == 'left' -%}
-        {{ image_layout }}
+        <div class="flex-item-65">
+          {{ image_layout }}
+          {{ ingredients_layout }}
+        </div>
       {%- endif -%}
 
-      <div class="feature-row__item feature-row__text feature-row__text--{{ section.settings.layout }} text-{{ section.settings.align_text }}" data-aos>
+      <div class="flex-item-35 feature-row__text--{{ section.settings.layout }} text-{{ section.settings.align_text }}" data-aos>
         {%- if section.settings.title != blank -%}
           <h2 class="h1 appear-delay{% cycle '','-1','-2','-3','-4' %}">{{ section.settings.title | escape }}</h2>
         {%- endif -%}
@@ -121,7 +157,10 @@
       </div>
 
       {%- if section.settings.layout == 'right' -%}
-        {{ image_layout }}
+        <div class="flex-item-65 image-ingredients-wrapper">
+          {{ image_layout }}
+          {{ ingredients_layout }}
+        </div>
       {%- endif -%}
     </div>
   </div>
@@ -237,21 +276,21 @@
     },
     {
       "type": "select",
-      "id": "image_width",
-      "label": "t:common.image_size.label",
-      "default": "50",
+      "id": "vertical_align_text",
+      "label": "Text Vertical Align",
+      "default": "top",
       "options": [
         {
-          "value": "33",
-          "label": "t:common.image_size.options.small.label"
+          "value": "top",
+          "label": "Top"
         },
         {
-          "value": "50",
-          "label": "t:common.image_size.options.medium.label"
+          "value": "center",
+          "label": "t:sections.text-and-image.settings.align_text.options.center.label"
         },
         {
-          "value": "66",
-          "label": "t:common.image_size.options.large.label"
+          "value": "bottom",
+          "label": "Bottom"
         }
       ]
     },
@@ -316,7 +355,13 @@
       "type": "color",
       "id": "ingredients_color",
       "label": "Color",
-      "default": "#fff"
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "ingredients_bg_color",
+      "label": "Background Color",
+      "default": "#f4f4f4"
     }
   ],
   "presets": [

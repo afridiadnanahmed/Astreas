@@ -1,0 +1,421 @@
+{%- if section.settings.divider -%}<div class="section--divider">{%- endif -%}
+
+<div class="page-width">
+  {%- if section.settings.title != blank -%}
+    <div class="text-{{ section.settings.align_text }}">
+      <h2>{{ section.settings.title }}</h2>
+    </div>
+  {% endif %}
+  <div class="rte theme-block">
+    {%- if section.settings.description != blank -%}
+      {%- if section.settings.enlarge_text %}<div class="enlarge-text">{% endif -%}
+      {{ section.settings.description}}
+      {%- if section.settings.enlarge_text %}</div>{% endif -%}
+    {%- else -%}
+      {{ 'home_page.onboarding.no_content' | t }}
+    {%- endif -%}
+  </div>
+
+  {% if section.settings.button_label != blank %}
+    <a href="{{ section.settings.button_link }}" class="btn btn--secondary btn--medium theme-block">
+      {{ section.settings.button_label }}
+    </a>
+  {% endif %}
+
+  <div class="grid {% unless section.blocks.size == 5 %}grid--uniform{% endunless %} grid--flush-bottom
+    has-{{ section.settings.desktop_columns_per_row }}-per-row
+    ">
+    {%- liquid
+      assign grid_item_width = 'medium-up--one-third'
+      case section.blocks.size
+        when 1
+          assign grid_item_width = 'medium-up--one-half'
+        when 2
+          assign grid_item_width = 'medium-up--one-half'
+        when 4
+          assign grid_item_width = 'medium-up--one-half'
+      endcase
+    -%}
+    {%- for block in section.blocks -%}
+      {%- if section.blocks.size == 5 and forloop.index < 3 -%}
+        {%- assign column_width = 'medium-up--one-half' -%}
+      {%- else -%}
+        {%- assign column_width = grid_item_width -%}
+      {%- endif -%}
+      <div class="text-with-image__block grid__item {{ column_width }} text-{{ section.settings.align_text }}" {{ block.shopify_attributes }} data-aos="row-of-3">
+        <div class="text-with-image__inner-block">
+          {%- if block.settings.enable_image -%}
+            <div style="{% if section.settings.align_text == 'center' %}margin: 0 auto;{% endif %} max-width: {{ block.settings.image_width }}px;">
+              {% if block.settings.button_link != blank %}
+                <a href="{{ block.settings.button_link }}">
+              {% endif %}
+              {% if block.settings.image != blank %}
+
+                <div class="image-wrap text-spacing" style="height: 0; padding-bottom: 300px;
+                  background-image: url('{{ block.settings.image | image_url: width: 600, height: 330, crop: "center" }}');background-repeat: no-repeat;"
+                >
+                  <div class="plus-icon">
+                    {% render 'plus-icon' %}
+                  </div>
+                </div>
+              {% else %}
+                <div class="image-wrap text-spacing" style="height: 300px">{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                  <div class="plus-icon">
+                    {% render 'plus-icon' %}
+                  </div>
+                </div>
+              {% endif %}
+              {% if block.settings.button_link != blank %}
+                </a>
+              {% endif %}
+            </div>
+          {% endif %}
+          <div class="text-with-image__inner-block__text">
+            {%- if block.settings.title != blank -%}
+              <h3>{{ block.settings.title }}</h3>
+            {% endif %}
+            {% if block.settings.text != blank %}
+              <div class="rte-setting text-spacing">{{ block.settings.text }}</div>
+            {% endif %}
+          </div>
+          <div class="expanded-block-hidden">
+            <h4>{{ block.settings.exp_title }}</h4>
+            <div class="description">
+              {{ block.settings.exp_description }}
+            </div>
+            <div class="stars-container">
+                {% render 'icon-stars' %}
+            </div>
+            <div class="quote-title">{{ block.settings.exp_review_title }}</div>
+            <div class="quote">
+              {{ block.settings.exp_review }}
+            </div>
+            <div class="endorser">{{ block.settings.exp_endorser }}</div>
+          </div>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{%- if section.settings.divider -%}</div>{%- endif -%}
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const parents = document.querySelectorAll('.text-with-image__inner-block');
+
+  parents.forEach(parent => {
+    const close = parent.querySelector('.plus-icon');
+    const popup = parent.querySelector('.expanded-block-hidden');
+
+    parent.addEventListener('click', function () {
+      if (!popup.classList.contains('show')) {
+        popup.classList.add('show');
+        close.classList.add('rotate');
+      }
+    });
+
+    close.addEventListener('click', function (event) {
+      if (close.classList.contains('rotate')) {
+        event.stopPropagation(); // Prevents the click event from propagating to the parent
+        popup.classList.remove('show');
+        close.classList.remove('rotate');
+      }
+    });
+
+    popup.addEventListener('click', function (event) {
+      event.stopPropagation();
+      popup.classList.remove('show');
+      close.classList.remove('rotate');
+    });
+  });
+});
+
+</script>
+
+{% style %}
+  @scope(#shopify-section-{{ section.id }}) {
+   .text-with-image__inner-block {
+     background-color: {{ section.settings.background_color }};
+     cursor: pointer;
+     position: relative;
+     overflow: hidden;
+    }
+
+    .text-with-image__inner-block__text {
+      padding: 10px;
+    }
+
+    .plus-icon.rotate {
+      z-index: 3;
+    }
+    .plus-icon {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      padding: 8px;
+      background-color: #fff;
+      cursor: pointer;
+      z-index: 3;
+      color: #0c3d3d;
+    }
+    .plus-icon.rotate svg {
+      -webkit-transform: rotate(45deg) !important;
+      transform: rotate(45deg) !important;
+    }
+    .plus-icon svg {
+      width: 24px;
+      height: 24px;
+      -webkit-transition: all .3s ease;
+      transition: all .3s ease;
+      display: block;
+    }
+    .text-with-image__inner-block:hover .plus-icon{
+      background-color: #63d1d9;
+    }
+    .expanded-block-hidden {
+      position: absolute;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-pack: end;
+      -ms-flex-pack: end;
+      justify-content: flex-end;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 24px 16px;
+      background-color: #d9dddb;
+      visibility: visible;
+      -webkit-transition: all .3s ease;
+      transition: all .3s ease;
+      -webkit-transform: translateY(100%);
+      transform: translateY(100%)
+    }
+    .expanded-block-hidden.show {
+      transform: translateY(0);
+    }
+    .expanded-block-hidden .description {
+      font-family: diatype, Arial, sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      letter-spacing: 0;
+      font-size: 18px;
+      line-height: 28px;
+      padding: 8px 0 0;
+      -webkit-line-clamp: 5;
+    }
+    .description p {
+      font-size: 12px;
+      border-bottom: 1px solid #bbb;
+      padding-bottom: 15px;
+    }
+    .stars-container{
+      display: flex;
+    }
+    .stars-container .star {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+    }
+    .star-wrap {
+        font-size: 16px;
+      }
+    .expanded-block-hidden .quote p {
+      font-size: 11px;
+      font-style: italic;
+    }
+    .expanded-block-hidden .endorser {
+      text-transform: uppercase;
+      color: #707170;
+      font-size: 12px;
+    }
+  }
+{% endstyle %}
+{% schema %}
+{
+  "name": "Benefits",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.text-columns.settings.title.label"
+    },
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "checkbox",
+      "id": "enlarge_text",
+      "label": "t:sections.rich-text.blocks.text.settings.enlarge_text.label",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Image Column"
+    },
+    {
+      "type": "range",
+      "id": "desktop_columns_per_row",
+      "label": "t:common.text_with_icons.settings.desktop_columns_per_row.label",
+      "default": 2,
+      "min": 2,
+      "max": 4,
+      "step": 1
+    },
+    {
+      "type": "select",
+      "id": "align_text",
+      "label": "t:sections.text-columns.settings.align_text.label",
+      "default": "center",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.text-columns.settings.align_text.options.left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.text-columns.settings.align_text.options.center.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:sections.text-columns.blocks.column.settings.button_label.label",
+      "default": "Optional button"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:sections.text-columns.blocks.column.settings.button_link.label"
+    },
+    {
+      "type": "header",
+      "content": "Image Block"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#eee"
+    },
+    {
+      "type": "checkbox",
+      "id": "divider",
+      "label": "t:sections.text-columns.settings.divider.label",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "t:sections.text-columns.blocks.column.name",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "enable_image",
+          "label": "t:sections.text-columns.blocks.column.settings.enable_image.label",
+          "default": true
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.text-columns.blocks.column.settings.image.label"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "label": "t:sections.text-columns.blocks.column.settings.image_width.label",
+          "default": 600,
+          "min": 60,
+          "max": 650,
+          "step": 10,
+          "unit": "px"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.text-columns.blocks.column.settings.title.label",
+          "default": "Example title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "t:sections.text-columns.blocks.column.settings.text.label",
+          "default": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Expandable Section"
+        },
+        {
+          "type": "text",
+          "id": "exp_title",
+          "label": "Title",
+          "default": "Example Title"
+        },
+        {
+          "type": "richtext",
+          "id": "exp_description",
+          "label": "Description",
+          "default": "<p>Ye his plain nor sorrow formed for his visit ungodly his, where dote heart days talethis break to break, flatterers.</p>"
+        },
+        {
+          "type": "text",
+          "id": "exp_review_title",
+          "label": "Review Title",
+          "default": "Review Title"
+        },
+        {
+          "type": "richtext",
+          "id": "exp_review",
+          "label": "Review",
+          "default": "<p>He delphis basked sullen thou gild, plain in he of and feere times. Had few.</p>"
+        },
+        {
+          "type": "text",
+          "id": "exp_endorser",
+          "label": "Endorser",
+          "default": "John Doe. 03/05/2024"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefits",
+      "blocks": [
+        {
+          "type": "text_block"
+        },
+        {
+          "type": "text_block"
+        },
+        {
+          "type": "text_block"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["custom.popups"]
+  }
+}
+{% endschema %}

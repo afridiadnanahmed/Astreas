@@ -16,12 +16,226 @@
         "mobile_height": "auto"
       }
     },
+    "text_image_and_ingredients_Cm3WWz": {
+      "type": "text-image-and-ingredients",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Untitled-2_6c1f65b0-5b40-40a6-a63d-79c841e247cb.png",
+        "image_mask": "portrait",
+        "title": "Image with text",
+        "text": "<p>Pair large text with an image to tell a story, explain a detail about your product, or describe a new promotion.<\/p>",
+        "align_text": "left",
+        "vertical_align_text": "top",
+        "layout": "right",
+        "divider": true,
+        "top_padding": false,
+        "bottom_padding": true,
+        "lazyload_images": true,
+        "ingredients_title": "Ingredients",
+        "ingredients": "<p>Ingreddient 1<\/p><p>Ingreddient 2<\/p><p>Ingreddient 3<\/p><p>Ingreddient 4<\/p><p>Ingreddient 5<\/p><p>Ingreddient 6<\/p>",
+        "ingredients_color": "#111111",
+        "ingredients_bg_color": "#f4f4f4"
+      }
+    },
+    "text_with_icons_HiGMUj": {
+      "type": "text-with-icons",
+      "blocks": {
+        "text_block_ra7mtL": {
+          "type": "text_block",
+          "settings": {
+            "icon": "bills",
+            "title": "Example title",
+            "text": ""
+          }
+        },
+        "text_block_LfGeRM": {
+          "type": "text_block",
+          "settings": {
+            "icon": "cart",
+            "title": "Example title",
+            "text": ""
+          }
+        },
+        "text_block_aVNCWU": {
+          "type": "text_block",
+          "settings": {
+            "icon": "chat",
+            "title": "Example title",
+            "text": ""
+          }
+        },
+        "text_block_FnTJn3": {
+          "type": "text_block",
+          "settings": {
+            "icon": "plant",
+            "title": "Example title",
+            "text": ""
+          }
+        },
+        "text_block_inqxVg": {
+          "type": "text_block",
+          "settings": {
+            "icon": "shield",
+            "title": "Example title",
+            "text": ""
+          }
+        },
+        "text_block_xVNHUY": {
+          "type": "text_block",
+          "settings": {
+            "icon": "phone",
+            "title": "Example title",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_block_ra7mtL",
+        "text_block_LfGeRM",
+        "text_block_aVNCWU",
+        "text_block_FnTJn3",
+        "text_block_inqxVg",
+        "text_block_xVNHUY"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Qualities",
+        "align_text": "left",
+        "flex_direction": "row",
+        "desktop_columns_per_row": 3,
+        "icon_color": "#000000",
+        "button_label": "",
+        "button_link": "",
+        "divider": false
+      }
+    },
+    "benefits_3LKNAB": {
+      "type": "benefits",
+      "blocks": {
+        "text_block_URiPVe": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/Truffle_1.png",
+            "image_width": 600,
+            "title": "Example title",
+            "text": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.<\/p>",
+            "exp_title": "Example Title",
+            "exp_description": "<p>Ye his plain nor sorrow formed for his visit ungodly his, where dote heart days talethis break to break, flatterers.<\/p>",
+            "exp_review_title": "Review Title",
+            "exp_review": "<p>He delphis basked sullen thou gild, plain in he of and feere times. Had few.<\/p>",
+            "exp_endorser": "John Doe. 03\/05\/2024"
+          }
+        },
+        "text_block_6kKnTN": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image_width": 650,
+            "title": "Example title",
+            "text": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.<\/p>",
+            "exp_title": "Example Title",
+            "exp_description": "<p>Ye his plain nor sorrow formed for his visit ungodly his, where dote heart days talethis break to break, flatterers.<\/p>",
+            "exp_review_title": "Review Title",
+            "exp_review": "<p>He delphis basked sullen thou gild, plain in he of and feere times. Had few.<\/p>",
+            "exp_endorser": "John Doe. 03\/05\/2024"
+          }
+        },
+        "text_block_Qk6NiL": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image_width": 650,
+            "title": "Example title",
+            "text": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.<\/p>",
+            "exp_title": "Example Title",
+            "exp_description": "<p>Ye his plain nor sorrow formed for his visit ungodly his, where dote heart days talethis break to break, flatterers.<\/p>",
+            "exp_review_title": "Review Title",
+            "exp_review": "<p>He delphis basked sullen thou gild, plain in he of and feere times. Had few.<\/p>",
+            "exp_endorser": "John Doe. 03\/05\/2024"
+          }
+        }
+      },
+      "block_order": [
+        "text_block_URiPVe",
+        "text_block_6kKnTN",
+        "text_block_Qk6NiL"
+      ],
+      "settings": {
+        "title": "Dolore et nonumy et kasd",
+        "description": "<p>This section doesn’t currently include any content. Add content to this section using the sidebar.<\/p>",
+        "enlarge_text": true,
+        "desktop_columns_per_row": 2,
+        "align_text": "left",
+        "button_label": "Optional button",
+        "button_link": "#",
+        "background_color": "#eeeeee",
+        "divider": false
+      }
+    },
+    "featured_product_b7pYCW": {
+      "type": "featured-product",
+      "blocks": {
+        "price_8AMr3q": {
+          "type": "price",
+          "settings": {
+          }
+        },
+        "separator_aTt4dn": {
+          "type": "separator",
+          "settings": {
+          }
+        },
+        "variant_picker_rRcKtq": {
+          "type": "variant_picker",
+          "settings": {
+            "variant_labels": true,
+            "picker_type": "button",
+            "product_dynamic_variants_enable": true,
+            "color_swatches": false
+          }
+        },
+        "buy_buttons_p9Ydni": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "surface_pickup_enable": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "description_cf3fNE": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "is_tab": false
+          }
+        }
+      },
+      "block_order": [
+        "price_8AMr3q",
+        "separator_aTt4dn",
+        "variant_picker_rRcKtq",
+        "buy_buttons_p9Ydni",
+        "description_cf3fNE"
+      ],
+      "settings": {
+        "featured_product": "astreas-ultra-test-do-not-purchase",
+        "divider": false,
+        "sku_enable": false,
+        "image_size": "medium",
+        "product_zoom_enable": true,
+        "thumbnail_position": "below",
+        "thumbnail_arrows": false,
+        "enable_video_looping": true,
+        "product_video_style": "muted"
+      }
+    },
     "video_testimonial_4j6Han": {
       "type": "video-testimonial",
       "blocks": {
         "testimonial_8nwVnX": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify:\/\/shop_images\/Untitled_7.png",
             "video": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
             "caption": "Lorem Ipsum",
             "title": "Example title",
@@ -41,6 +255,7 @@
         "testimonial_yLY3zm": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify:\/\/shop_images\/mobile_cans.png",
             "video": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
             "caption": "Lorem Ipsum",
             "title": "Example title",
@@ -62,10 +277,36 @@
         "button_link": "#",
         "divider": true
       }
+    },
+    "advanced_content_ArDT83": {
+      "type": "advanced-content",
+      "blocks": {
+        "liquid_YxDhpR": {
+          "type": "liquid",
+          "settings": {
+            "code": "<script \n            type=\"text\/javascript\" \n            src=\"https:\/\/cdn.ttw.reputon.com\/assets\/widget.js?shop=mission-space-food.myshopify.com\" defer><\/script>\n<div class=\"reputon-tiktok-widget\"\n                 data-content-index=\"1\"\n                 data-autoscroll=\"false\"\n                 data-widget-type=\"carousel\"><\/div>",
+            "width": "100%",
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "liquid_YxDhpR"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": true,
+        "lazyload_images": true
+      }
     }
   },
   "order": [
     "hero-video",
-    "video_testimonial_4j6Han"
+    "text_image_and_ingredients_Cm3WWz",
+    "text_with_icons_HiGMUj",
+    "benefits_3LKNAB",
+    "featured_product_b7pYCW",
+    "video_testimonial_4j6Han",
+    "advanced_content_ArDT83"
   ]
 }
